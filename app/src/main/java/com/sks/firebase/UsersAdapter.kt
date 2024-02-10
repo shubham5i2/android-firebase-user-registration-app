@@ -38,4 +38,8 @@ class UsersAdapter(var context: Context, var userList: ArrayList<Users>) :
     override fun getItemCount(): Int {
         return userList.size
     }
+
+    fun getUserId(position: Int): String {
+        return userList[position].userId
+    }
 }

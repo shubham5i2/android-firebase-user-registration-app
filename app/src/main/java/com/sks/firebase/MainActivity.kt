@@ -2,8 +2,11 @@ package com.sks.firebase
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -31,6 +34,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity, AddUserActivity::class.java)
             startActivity(intent)
         }
+
+        ItemTouchHelper(object :
+            ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val id = usersAdapter.getUserId(viewHolder.adapterPosition)
+                databaseReference.child(id).removeValue()
+
+                Toast.makeText(applicationContext, "User deleted successfully", Toast.LENGTH_LONG)
+                    .show()
+            }
+
+        }).attachToRecyclerView(mainBinding.recyclerView)
+
         retrieveDataFromDatabase()
     }
 
