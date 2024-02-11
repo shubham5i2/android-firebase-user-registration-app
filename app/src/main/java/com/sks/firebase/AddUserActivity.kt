@@ -20,6 +20,8 @@ class AddUserActivity : AppCompatActivity() {
         val view = addUserBinding.root
         setContentView(view)
 
+        supportActionBar?.title = "Add User"
+
         addUserBinding.buttonAddUser.setOnClickListener {
             addUserToDatabase()
         }

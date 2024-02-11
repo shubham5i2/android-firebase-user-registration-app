@@ -1,8 +1,12 @@
 package com.sks.firebase
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -29,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         mainBinding = ActivityMainBinding.inflate(layoutInflater)
         val view = mainBinding.root
         setContentView(view)
+
+        supportActionBar?.title = "User Registration"
 
         mainBinding.floatingActionButton.setOnClickListener {
             val intent = Intent(this@MainActivity, AddUserActivity::class.java)
@@ -81,5 +87,43 @@ class MainActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_delete_all, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == R.id.deleteAll) {
+            showDialogMessage()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showDialogMessage() {
+        val dialogMessage = AlertDialog.Builder(this)
+        dialogMessage.setTitle("Delete All Users")
+        dialogMessage.setMessage(
+            "Are you sure you want to delete all the users? " +
+                    "If you want to delete a specific user, you can swipe right or left on the item you want to delete."
+        )
+        dialogMessage.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
+            dialog.cancel()
+        })
+        dialogMessage.setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+            databaseReference.removeValue().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    usersAdapter.notifyDataSetChanged()
+                    Toast.makeText(
+                        applicationContext, "All users deleted successfully", Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+        })
+        dialogMessage.setCancelable(false)
+        dialogMessage.create().show()
     }
 }

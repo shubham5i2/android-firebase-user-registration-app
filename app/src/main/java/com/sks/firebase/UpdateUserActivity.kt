@@ -20,6 +20,8 @@ class UpdateUserActivity : AppCompatActivity() {
         val view = updateUserBinding.root
         setContentView(view)
 
+        supportActionBar?.title = "Update User"
+
         getAndSetData()
 
         updateUserBinding.buttonUpdateUser.setOnClickListener {
