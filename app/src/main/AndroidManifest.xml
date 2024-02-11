@@ -16,18 +16,12 @@
         tools:targetApi="31">
         <activity
             android:name=".UpdateUserActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".AddUserActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
+            android:parentActivityName=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
