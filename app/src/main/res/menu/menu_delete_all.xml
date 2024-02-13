@@ -7,6 +7,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@drawable/delete_icon"
-        android:title="Delete All User"
-        app:showAsAction="always|withText" />
+        android:title="Delete All Users" />
+    <item
+        android:id="@+id/signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="Sign Out" />
 </menu>

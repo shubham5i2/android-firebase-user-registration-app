@@ -52,4 +52,17 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
+    // onStart() is overridden to check if user is already logged in or not
+    override fun onStart() {
+        super.onStart()
+
+        val user = auth.currentUser
+
+        if (user != null) {
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
 }
