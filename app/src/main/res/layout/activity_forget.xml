@@ -26,7 +26,7 @@
     <Button
         android:id="@+id/buttonReset"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="356dp"
         android:backgroundTint="@android:color/holo_orange_dark"
         android:text="SEND RESET LINK"

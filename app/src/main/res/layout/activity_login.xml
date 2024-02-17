@@ -51,11 +51,13 @@
         android:id="@+id/buttonSignup"
         android:layout_width="140dp"
         android:layout_height="55dp"
+        android:layout_marginStart="21dp"
         android:layout_marginTop="35dp"
         android:layout_marginEnd="55dp"
         android:backgroundTint="@color/design_default_color_error"
         android:text="SIGN UP"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSignin"
         app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignin" />
 
     <Button
